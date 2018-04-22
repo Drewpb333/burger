@@ -26,40 +26,40 @@ function convertToSql(obj) {
         }
     }
 }
- 
-    //Object of Methods for Object Relational Mapping
-    var orm = {
-        selectAll: function (table, callback) {
-            var queryString = "SELECT * FROM " + table + ";";
-            connection.query(queryString, function (err, result) {
-                if (err) throw err;
-                callback(result);
-            });
-        },
-        insert: function (table, col, vals, callback) {
-            var queryString = "INSERT INTO " + table;
 
-            //allows for proper formatting from object to sql syntax
-            queryString += " (" + col.toString() + ") ";
-            queryString += "VALUES (" + printQMarks(vals.length) + ");";
+//Object of Methods for Object Relational Mapping
+var orm = {
+    selectAll: function (table, callback) {
+        var queryString = "SELECT * FROM " + table + ";";
+        connection.query(queryString, function (err, result) {
+            if (err) throw err;
+            callback(result);
+        });
+    },
+    insert: function (table, col, vals, callback) {
+        var queryString = "INSERT INTO " + table;
 
-            connection.query(queryString, vals, function (err, result) {
-                if (err) throw err;
-                callback(result);
-            });
-        },
-        update: function (table, ObjColNames, condition, callback) {
-            var queryString = "UPDATE " + table;
+        //allows for proper formatting from object to sql syntax
+        queryString += " (" + col.toString() + ") ";
+        queryString += "VALUES (" + printQMarks(vals.length) + ");";
 
-            //allows for proper formatting from object to sql syntax
-            queryString += " SET " + convertToSql(ObjColNames);
-            queryString += " WHERE " + condition;
+        connection.query(queryString, vals, function (err, result) {
+            if (err) throw err;
+            callback(result);
+        });
+    },
+    update: function (table, ObjColNames, condition, callback) {
+        var queryString = "UPDATE " + table;
 
-            connection.query(queryString, function (err, result) {
-                if (err) throw err;
-                callback(result);
-            });
-        }
-    };
+        //allows for proper formatting from object to sql syntax
+        queryString += " SET " + convertToSql(ObjColNames);
+        queryString += " WHERE " + condition;
 
-    module.exports = orm;
+        connection.query(queryString, function (err, result) {
+            if (err) throw err;
+            callback(result);
+        });
+    }
+};
+
+module.exports = orm;

@@ -1,14 +1,20 @@
 var orm = require("../models/burger.js");
 
 var burger = {
-    all: function(callback){
-    
+    selectAll: function(callback){
+        orm.selectAll("burgers",function(response){
+            callback(response);
+        })
     },
-    insert: function(){
-
+    insert: function(cols, vals, callback){
+        orm.insert("burgers", cols, vals, function(response){
+            callback(response);
+        })
     },
-    update: function(){
-
+    update: function(objColNames, conditon, callback){
+        orm.update("burgers", objColNames, condition, function(response){
+            callback(response);
+        })
     }
 };
 

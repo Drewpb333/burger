@@ -13,6 +13,7 @@ connection.connect(function (err) {
     if(err){
         return console.log(err);
     }
+    //verifies that connection has been made
     console.log("Connected at id: " + connection.threadId);
 });
 

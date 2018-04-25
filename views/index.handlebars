@@ -26,7 +26,7 @@
         <div class="col-md-4"></div>
         <div class="col-md-4" id="center">
             <br>
-            <img src="/img/whopper.jpg">
+            <img src="/assets/img/whopper.jpg">
             <h1>
                 <span id="green">Eat</span>-
                 <span id="red">Da</span>-
@@ -43,7 +43,7 @@
             <ul>
                 {{#each burger}} 
                     {{#unless devoured}}
-                        <li>{{burger_name}}<button class="devour" data-id="{{id}}" data-devour="{{devoured}}">DEVOURED</button></li>
+                        <li>{{burger_name}}<button class="devour-burger" data-id="{{id}}" data-devour="{{devoured}}">DEVOURED</button></li>
                     {{/unless}} 
                 {{/each}}
             </ul>
@@ -51,8 +51,11 @@
         <div class="col-md-3" id="center">
             {{!-- for burger that have been eaten --}}
             <ul>
-                {{#each burger}} {{#if devoured}}
-                <li>{{burger_name}}</li> {{/if}} {{/each}}
+                {{#each burger}} 
+                    {{#if devoured}}
+                        <li>{{burger_name}}</li>
+                    {{/if}} 
+                {{/each}}
             </ul>
         </div>
         <div class="col-md-3"></div>
@@ -66,7 +69,6 @@
                 <div class="form-group">
                     <input type="text" id="new-burger">
                 </div>
-
                 <button type="submit" class="btn-primary">Submit</button>
             </form>
         </div>

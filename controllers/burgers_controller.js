@@ -12,6 +12,7 @@ router.get("/", function (req, res) {
         };
         //burgerObj is created with index.handlebars temp.
         res.render("index", burgerObj);
+        console.log(burgerObj);
     });
 });
 

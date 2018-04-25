@@ -1,18 +1,22 @@
 <link type="text/css" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <style>
-    body{
+    body {
         background-color: #E6AA55;
     }
+
     #center {
         text-align: center;
     }
-    img{
+
+    img {
         max-width: 300px;
     }
-    #green{
+
+    #green {
         color: #34AF25;
     }
-    #red{
+
+    #red {
         color: #EE2A32;
     }
 </style>
@@ -21,9 +25,13 @@
     <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4" id="center">
-        <br>
-        <img src="/img/whopper.jpg">
-            <h1><span id="green">Eat</span>-<span id="red">Da</span>-<span id="green">Burger!</span></h1>
+            <br>
+            <img src="/img/whopper.jpg">
+            <h1>
+                <span id="green">Eat</span>-
+                <span id="red">Da</span>-
+                <span id="green">Burger!</span>
+            </h1>
         </div>
         <div class="col-md-4"></div>
     </div>
@@ -33,13 +41,18 @@
         <div class="col-md-3"></div>
         <div class="col-md-3" id="center">
             <ul>
-                {{#each burger}} {{#unless devoured}} {{!-- {{> burger/burger-block sleep=true}} --}} {{/unless}} {{/each}}
+                {{#each burger}} 
+                    {{#unless devoured}}
+                        <li>{{burger_name}}<button class="devour" data-id="{{id}}" data-devour="{{devoured}}">DEVOURED</button></li>
+                    {{/unless}} 
+                {{/each}}
             </ul>
         </div>
         <div class="col-md-3" id="center">
             {{!-- for burger that have been eaten --}}
             <ul>
-                {{#each burger}} {{#if devoured}} {{!-- {{> burger/burger-block sleep=false}} --}} {{/if}} {{/each}}
+                {{#each burger}} {{#if devoured}}
+                <li>{{burger_name}}</li> {{/if}} {{/each}}
             </ul>
         </div>
         <div class="col-md-3"></div>

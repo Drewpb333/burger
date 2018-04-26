@@ -16,6 +16,15 @@ router.get("/", function (req, res) {
     });
 });
 
+// allows access to JSON in API
+router.get("/api/burgers", function (req, res) {
+     //utilizes callback function to create object with burger property
+     burger.selectAll(function (data) {
+        //burgerObj is created with index.handlebars temp.
+        res.json(data);
+    });
+})
+
 //creates route for posting new row(burger) to burgers_db
 router.post("/api/burgers", function (req, res) {
     // creates row for burger in mysql DB

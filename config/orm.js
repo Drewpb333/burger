@@ -14,9 +14,9 @@ function convertToSql(obj) {
     var arr = [];
 
     // fills array with newly created SQL syntax
-    for (var key in ob) {
-        var value = ob[key];
-        if (Object.hasOwnProperty.call(ob, key)) {
+    for (var key in obj) {
+        var value = obj[key];
+        if (Object.hasOwnProperty.call(obj, key)) {
             //maintains string property in SQL
             if (typeof value === "string" && value.indexOf(" ") >= 0) {
                 value = "'" + value + "'";
@@ -49,16 +49,20 @@ var orm = {
         });
     },
     update: function (table, ObjColNames, condition, callback) {
-        var queryString = "UPDATE " + table;
+        // var queryString = "UPDATE " + table;
 
-        //allows for proper formatting from object to sql syntax
-        queryString += " SET " + convertToSql(ObjColNames);
-        queryString += " WHERE " + condition;
+        // //allows for proper formatting from object to sql syntax
+        // queryString += " SET " + convertToSql(ObjColNames);
+        // queryString += " WHERE " + condition;
 
-        connection.query(queryString, function (err, result) {
+        var queryString = "UPDATE ?? SET ? WHERE ?;"
+
+        var sqlQuery = connection.query(queryString, [table, ObjColNames, condition], function (err, result) {
             if (err) throw err;
             callback(result);
         });
+
+        console.log( sqlQuery.sql );
     }
 };
 

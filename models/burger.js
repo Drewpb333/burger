@@ -11,7 +11,7 @@ var burger = {
             callback(response);
         })
     },
-    update: function(objColNames, conditon, callback){
+    update: function(objColNames, condition, callback){
         orm.update("burgers", objColNames, condition, function(response){
             callback(response);
         })

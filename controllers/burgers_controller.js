@@ -28,7 +28,7 @@ router.get("/api/burgers", function (req, res) {
 //creates route for posting new row(burger) to burgers_db
 router.post("/api/burgers", function (req, res) {
     // creates row for burger in mysql DB
-    burger.insert(["burger_name", "devoured"], [req.body.burger_name, req.body.devoured], function (result) {
+    burger.insert(["burger_name", "devoured"], [req.body.burger_name, false], function (result) {
         res.json({
             id: result.insertId
         });
@@ -36,12 +36,12 @@ router.post("/api/burgers", function (req, res) {
 })
 
 router.put("/api/burgers/:id", function (req, res) {
-    var condition = "id = " + req.params.id;
+    var condition = { id: req.params.id };
 
     burger.update(
         //creates object for rendering
         {
-            devoured: req.body.devoured
+            devoured: req.body.devoured === "true" ? true : false
         },
         condition,
         function (result) {

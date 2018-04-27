@@ -1,8 +1,9 @@
+
 var express = require("express");
 var bodyParser = require("body-parser");
 var exphbs = require("express-handlebars");
 var routes = require("./controllers/burgers_controller.js");
-var path = require("path")
+var path = require('path');
 
 var app = express();
 
@@ -18,7 +19,7 @@ app.use(bodyParser.json());
 
 //sets express instance, app, to use handlebars
 app.engine("handlebars", exphbs({
-    default: "main"
+    defaultLayout: "main"
 }));
 app.set("view engine", "handlebars");
 
